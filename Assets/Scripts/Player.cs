@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,11 @@ public class Player : MonoBehaviour {
     
     public Rigidbody Rigidbody { get; private set; }
 
+    [SerializeField]
+    private float gravity;
+
+    public GameObject destroyPrefab;
+    
     void Awake() {
         Rigidbody = transform.GetComponent<Rigidbody>();
         if (!i) {
@@ -15,5 +21,9 @@ public class Player : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         } else
             Destroy(gameObject);
+    }
+
+    private void Update() {
+        Physics.gravity = new Vector3(0, gravity, 0);
     }
 }
