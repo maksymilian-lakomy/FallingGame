@@ -13,24 +13,19 @@ public class PlayerController : MonoBehaviour {
     private Vector3 velocityBeforePhysicsUpdate;
 
     public void Update() {
-        // if (jumpCounter > 1)
-        //     return;
+        if (jumpCounter > 1)
+            return;
         if (!canMove)
             return;
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             // Player.i.Rigidbody.velocity = Vector3.zero;
-            Player.i.Rigidbody.AddForce(new Vector3(150, 0, 0));
+            Player.i.Rigidbody.AddForce(new Vector3(150, 150, 0));
             jumpParticle.Play();
             jumpCounter++;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             // Player.i.Rigidbody.velocity = Vector3.zero;
-            Player.i.Rigidbody.AddForce(new Vector3(-150, 0, 0));
-            jumpParticle.Play();
-            jumpCounter++;
-        }
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            Player.i.Rigidbody.AddForce(new Vector3(0, 150, 0));
+            Player.i.Rigidbody.AddForce(new Vector3(-150, 150, 0));
             jumpParticle.Play();
             jumpCounter++;
         }
@@ -45,9 +40,13 @@ public class PlayerController : MonoBehaviour {
         if (velocityBeforePhysicsUpdate.y < -7f) {
             gameObject.SetActive(false);
             if (canMove) {
+                CameraAnimatorHandler.cameraAnimator.SetBool("Destroy", true);
                 Instantiate(Player.i.destroyPrefab, transform.position, transform.rotation);
                 canMove = false;
             }
+        }
+        else {
+            jumpCounter = 0;
         }
     }
 }
