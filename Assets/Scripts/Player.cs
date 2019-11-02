@@ -9,9 +9,6 @@ public class Player : MonoBehaviour {
     
     public Rigidbody Rigidbody { get; private set; }
 
-    [SerializeField]
-    private float gravity;
-
     public GameObject destroyPrefab;
     
     void Awake() {
@@ -23,7 +20,4 @@ public class Player : MonoBehaviour {
             Destroy(gameObject);
     }
 
-    private void Update() {
-        Physics.gravity = new Vector3(0, gravity, 0);
-    }
 }

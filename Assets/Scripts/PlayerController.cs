@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
 public class PlayerController : MonoBehaviour {
     [SerializeField]
@@ -12,11 +13,20 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 velocityBeforePhysicsUpdate;
 
+    
+    
     public void Update() {
         if (jumpCounter > 1)
             return;
         if (!canMove)
             return;
+        // if (!Input.GetKeyDown(KeyCode.RightArrow) && !Input.GetKeyDown(KeyCode.LeftArrow) && Input.touchCount <= 0)
+        //     return;
+        //
+        // Double screenWidth = Screen.width / 2;
+        // Touch touch = Input.GetTouch(0);
+        
+            // || (touch.position.x >= screenWidth && touch.phase == TouchPhase.Began)
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             // Player.i.Rigidbody.velocity = Vector3.zero;
             Player.i.Rigidbody.AddForce(new Vector3(150, 150, 0));
@@ -37,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other) {
         Debug.Log(velocityBeforePhysicsUpdate);
-        if (velocityBeforePhysicsUpdate.y < -7f) {
+        if (velocityBeforePhysicsUpdate.y < -7f && other.collider.tag == "Floor") {
             gameObject.SetActive(false);
             if (canMove) {
                 CameraAnimatorHandler.cameraAnimator.SetBool("Destroy", true);
