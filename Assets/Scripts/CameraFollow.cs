@@ -24,14 +24,15 @@ public class CameraFollow : MonoBehaviour {
         objectToFollowRigidbody = objectToFollow.GetComponent<Rigidbody>();
     }
 
-    void Update() {
-        if (Player.i.isActiveAndEnabled) {
-            transform.position =
-                Vector3.Lerp(transform.position, objectToFollow.position + cameraOffset,
-                             Time.deltaTime * (float) cameraFollowTime);
+    void LateUpdate() {
+        if (Player.i.PlayerState == PlayerState.Alive) {
+            Vector3 destinationPosition = Vector3.Lerp(transform.position, objectToFollow.position + cameraOffset,
+                                                        Time.deltaTime * (float) cameraFollowTime);
+            transform.position = destinationPosition;
             Double speed = Mathf.Abs(objectToFollowRigidbody.velocity.y / 10f);
             Double currentSpeed = cameraAnimator.GetFloat("Zoom");
             cameraAnimator.SetFloat("Zoom", Mathf.Lerp((float)currentSpeed, (float)speed, Time.deltaTime*(float)cameraFovScaleTime));
+            transform.LookAt(objectToFollow);
         }
         else {
             cameraAnimator.SetFloat("Zoom", 0f);
