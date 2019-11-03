@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f46ae48269557af499d84b7dbf135f45
+guid: c3ea6302012c7094f82b229cc9447b3e
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
@@ -9,11 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Color palette
     second: {fileID: 2100000, guid: 87ab0690c3195954fae5e9859c2b5f54, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wooden Desk.png
-    second: {fileID: 2100000, guid: 87b3da2ca6399924a9a7cb3c00c5125c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
