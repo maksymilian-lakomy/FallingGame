@@ -1,3 +1,3 @@
 ﻿public enum PlayerState {
-    Alive, Static, Destroyed
+    Active, Static, NotActive
 }

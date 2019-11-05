@@ -17,9 +17,11 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     public GameObject destroyPrefab;
     
+    public delegate void PlayerOverSpeedEventHandler(object sender, EventArgs args);
+    public event PlayerOverSpeedEventHandler PlayerOverSpeed;
+    
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
-        Player.i.PlayerState = PlayerState.Alive;
     }
 
     private void Update() {
@@ -62,12 +64,19 @@ public class PlayerController : MonoBehaviour {
     private void OnCollisionEnter(Collision other) {
         if (velocityBeforePhysicsUpdate.y > -7f || !other.collider.CompareTag("Floor"))
             return;
-        if (Player.i.PlayerState != PlayerState.Destroyed) {
+        if (Player.i.PlayerState != PlayerState.NotActive) {
             Instantiate(destroyPrefab, transform.position, transform.rotation);
-            Player.i.PlayerState = PlayerState.Destroyed;
+            Player.i.PlayerState = PlayerState.NotActive;
         }
+
+        OnPlayerOverSpeed();
         Camera.main.GetComponent<Animator>().SetBool("Destroy", true);
         Destroy(gameObject);
     }
+    
+    private void OnPlayerOverSpeed() {
+        PlayerOverSpeed?.Invoke(this, EventArgs.Empty);
+    } 
+    
 }
 

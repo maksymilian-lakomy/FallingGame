@@ -9,6 +9,9 @@
         <e p="Scripts" t="Include">
           <e p="CameraAnimatorHandler.cs" t="Include" />
           <e p="CameraFollow.cs" t="Include" />
+          <e p="CustomEventArgs" t="Include">
+            <e p="CupEventArgs.cs" t="Include" />
+          </e>
           <e p="Follow.cs" t="Include" />
           <e p="MenuManager.cs" t="Include" />
           <e p="MenuTouchManager.cs" t="Include" />

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using CustomEventArgs;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class CameraFollow : MonoBehaviour {
-    [SerializeField]
-    private Transform objectToFollow;
-
+    [CanBeNull] private Transform objectToFollow;
     private Rigidbody objectToFollowRigidbody;
 
     [SerializeField] private Vector3 cameraOffset;
@@ -21,11 +21,16 @@ public class CameraFollow : MonoBehaviour {
 
     private void Awake() {
         cameraAnimator = camera.GetComponent<Animator>();
-        objectToFollowRigidbody = objectToFollow.GetComponent<Rigidbody>();
+        Player.i.CupInstantiated += OnCupInstantiated;
     }
 
+    private void OnCupInstantiated(object sender, CupEventArgs e) {
+        objectToFollow = e.Cup.transform;
+        objectToFollowRigidbody = e.Cup.GetComponent<Rigidbody>();
+    }
+    
     void LateUpdate() {
-        if (Player.i.PlayerState == PlayerState.Alive) {
+        if (Player.i.PlayerState == PlayerState.Active && objectToFollow != null) {
             Vector3 destinationPosition = Vector3.Lerp(transform.position, objectToFollow.position + cameraOffset,
                                                         Time.deltaTime * (float) cameraFollowTime);
             transform.position = destinationPosition;
