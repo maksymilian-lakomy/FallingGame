@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CustomEventArgs;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     
@@ -19,20 +20,34 @@ public class Player : MonoBehaviour {
     private PlayerController playerController;
     [SerializeField] private GameObject cupPrefab;
     private GameObject activeCup;
+    [SerializeField] private Transform gameStart;
+    
+    [SerializeField] private Follow steamFollow;
     
     private void Awake() {
         if (!i) {
             i = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         } else
             Destroy(gameObject);
     }
 
     private void Start() {
-        activeCup = Instantiate(cupPrefab);
+        CreatePlayer();
+    }
+
+    private void CreatePlayer() {
+        activeCup = Instantiate(cupPrefab, gameStart);
         playerController = activeCup.GetComponent<PlayerController>();
         playerController.PlayerOverSpeed += OnPlayerOverSpeed;
+        steamFollow.ObjectToFollow = activeCup.transform;
         OnCupInstantiated();
+    }
+
+    public void StartGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        CreatePlayer();
+
     }
     
     private void OnPlayerOverSpeed(object sender, EventArgs args) {
@@ -41,7 +56,7 @@ public class Player : MonoBehaviour {
     }
 
     private void OnCupInstantiated() {
-        CupInstantiated?.Invoke(cupPrefab, new CupEventArgs(activeCup));
+        CupInstantiated?.Invoke(this, new CupEventArgs(activeCup));
     }
     
     private void OnPlayerFailed() {

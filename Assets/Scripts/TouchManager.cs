@@ -13,4 +13,10 @@ public class TouchManager : MonoBehaviour {
         else
             return Vector2.left;
     }
+
+    public static bool IsTouch() {
+        if (Input.touchCount > 0)
+            return true;
+        return false;
+    }
 }
