@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour {
             Instantiate(destroyPrefab, transform.position, transform.rotation);
             Player.i.PlayerState = PlayerState.Destroyed;
         }
+        Camera.main.GetComponent<Animator>().SetBool("Destroy", true);
         Destroy(gameObject);
     }
 }
