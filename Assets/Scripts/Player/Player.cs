@@ -19,7 +19,9 @@ public class Player : MonoBehaviour {
     
     private PlayerController playerController;
     [SerializeField] private GameObject cupPrefab;
-    private GameObject activeCup;
+    [SerializeField] private GameObject cupDestroyedPrefab;
+    private GameObject cupActive;
+    private GameObject cupDestroyed;
     [SerializeField] private Transform gameStart;
     
     [SerializeField] private Follow steamFollow;
@@ -37,29 +39,33 @@ public class Player : MonoBehaviour {
     }
 
     private void CreatePlayer() {
-        activeCup = Instantiate(cupPrefab, gameStart);
-        playerController = activeCup.GetComponent<PlayerController>();
+        cupActive = Instantiate(cupPrefab, gameStart);
+        playerController = cupActive.GetComponent<PlayerController>();
         playerController.PlayerOverSpeed += OnPlayerOverSpeed;
-        steamFollow.ObjectToFollow = activeCup.transform;
+        steamFollow.ObjectToFollow = cupActive.transform;
+        cupDestroyed = Instantiate(cupDestroyedPrefab);
+        cupDestroyed.SetActive(false);
         OnCupInstantiated();
     }
 
     public void StartGame() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         CreatePlayer();
-
     }
     
     private void OnPlayerOverSpeed(object sender, EventArgs args) {
         OnPlayerFailed();
-        Debug.Log("Test");
     }
 
     private void OnCupInstantiated() {
-        CupInstantiated?.Invoke(this, new CupEventArgs(activeCup));
+        CupInstantiated?.Invoke(this, new CupEventArgs(cupActive));
     }
     
     private void OnPlayerFailed() {
+        cupDestroyed.transform.position = cupActive.transform.position;
+        cupDestroyed.transform.rotation = cupActive.transform.rotation;
+        cupActive.SetActive(false);
+        cupDestroyed.SetActive(true);
         PlayerFailed?.Invoke(this, EventArgs.Empty);
     } 
 

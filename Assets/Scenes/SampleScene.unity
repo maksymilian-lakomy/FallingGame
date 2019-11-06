@@ -1010,6 +1010,8 @@ MonoBehaviour:
   PlayerState: 0
   cupPrefab: {fileID: 923932792454956905, guid: 9d191ae0a37ebfd4aa00438b238f9c1c,
     type: 3}
+  cupDestroyedPrefab: {fileID: 5298723909617834981, guid: 4ead35118868970439f69804231a9bae,
+    type: 3}
   gameStart: {fileID: 351306925}
   steamFollow: {fileID: 1818254868067844519}
 --- !u!4 &384000551
