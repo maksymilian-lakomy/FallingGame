@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         velocityBeforePhysicsUpdate = rigidbody.velocity;
+        transform.eulerAngles = new Vector3(0, 0, Mathf.Clamp(transform.eulerAngles.z, -15f, 15f));
     }
 
     private bool Movement(Direction direction) {
