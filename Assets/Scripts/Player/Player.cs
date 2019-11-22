@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     
     public static Player i;
     public PlayerState PlayerState = PlayerState.Active;
-    
+
     public delegate void PlayerFailedEventHandler(object sender, EventArgs args);
     public event PlayerFailedEventHandler PlayerFailed;
 
