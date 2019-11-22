@@ -72,11 +72,11 @@ public class PlayerController : MonoBehaviour {
     }
     
     private void OnCollisionEnter(Collision other) {
-        if (velocityBeforePhysicsUpdate.y > -7f || !other.collider.CompareTag("Floor"))
-        {
+        if (other.collider.CompareTag("Floor")) 
             jumpCounter = 0;
+        
+        if (velocityBeforePhysicsUpdate.y > -7f)
             return;
-        }
 
         if (Player.i.PlayerState != PlayerState.NotActive) {
             Player.i.PlayerState = PlayerState.NotActive;
