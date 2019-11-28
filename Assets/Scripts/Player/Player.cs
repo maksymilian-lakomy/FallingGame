@@ -25,7 +25,9 @@ public class Player : MonoBehaviour {
     [SerializeField] private Transform gameStart;
     
     [SerializeField] private Follow steamFollow;
-    
+
+
+
     private void Awake() {
         if (!i) {
             i = this;
@@ -69,4 +71,6 @@ public class Player : MonoBehaviour {
         PlayerFailed?.Invoke(this, EventArgs.Empty);
     } 
 
+
+    
 }

@@ -7499,6 +7499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cup
       objectReference: {fileID: 0}
+    - target: {fileID: 923932792454956905, guid: 9d191ae0a37ebfd4aa00438b238f9c1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6373278027331245435, guid: 9d191ae0a37ebfd4aa00438b238f9c1c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8748,6 +8753,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shelf Moveable
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828242214650776986, guid: 8cbda596be320fc4a88678e4428fa32c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 7537217926554779529, guid: 8cbda596be320fc4a88678e4428fa32c,
         type: 3}
