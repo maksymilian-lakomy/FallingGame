@@ -4781,7 +4781,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 923932792454956905}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4849,6 +4849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpParticle: {fileID: 1888114207704702033}
+  maxCapacity: 100
+  capacity: 100
 --- !u!54 &5160651556134246032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4863,7 +4865,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 120
   m_CollisionDetection: 2
 --- !u!64 &5159653716933202617
 MeshCollider:
