@@ -20,6 +20,13 @@ public class PlayerController : MonoBehaviour {
     
     public delegate void PlayerOverSpeedEventHandler(object sender, EventArgs args);
     public event PlayerOverSpeedEventHandler PlayerOverSpeed;
+
+    [Header("Stats")]
+    [SerializeField]
+    private float maxCapacity = 100f;
+    [SerializeField]
+    private float capacity = 100f;
+    public float Capacity => capacity;
     
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
@@ -58,6 +65,10 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         velocityBeforePhysicsUpdate = rigidbody.velocity;
+        Debug.Log(Quaternion.e);
+        float percentage = PouringOutPercentage(transform.eulerAngles.z);
+        
+        capacity -= maxCapacity * percentage / 100;
     }
 
     private bool Movement(Direction direction) {
@@ -89,6 +100,11 @@ public class PlayerController : MonoBehaviour {
     private void OnPlayerOverSpeed() {
         PlayerOverSpeed?.Invoke(this, EventArgs.Empty);
     } 
+
+    public static float PouringOutPercentage(float angle) {
+        float referAngle = 90f;
+        return Mathf.Pow(angle, 2) / Mathf.Pow(referAngle, 2);
+    }
     
 }
 
