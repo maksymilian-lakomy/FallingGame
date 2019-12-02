@@ -65,10 +65,6 @@ public class PlayerController : MonoBehaviour {
 
     private void FixedUpdate() {
         velocityBeforePhysicsUpdate = rigidbody.velocity;
-        Debug.Log(Quaternion.e);
-        float percentage = PouringOutPercentage(transform.eulerAngles.z);
-        
-        capacity -= maxCapacity * percentage / 100;
     }
 
     private bool Movement(Direction direction) {
@@ -101,10 +97,6 @@ public class PlayerController : MonoBehaviour {
         PlayerOverSpeed?.Invoke(this, EventArgs.Empty);
     } 
 
-    public static float PouringOutPercentage(float angle) {
-        float referAngle = 90f;
-        return Mathf.Pow(angle, 2) / Mathf.Pow(referAngle, 2);
-    }
     
 }
 
