@@ -13,4 +13,8 @@ public class CameraAnimatorHandler : MonoBehaviour {
     public void DestroyAnimationEnded() {
         cameraAnimator.SetBool("Destroy", false);
     }
+
+    public void JumpAnimationEnded() {
+        cameraAnimator.SetBool("Jump", false);
+    }
 }

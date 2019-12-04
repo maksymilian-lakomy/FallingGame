@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour {
         if (Player.i.PlayerState == PlayerState.Active && playerRB) {
             velocityBar.fillAmount = Mathf.Lerp(velocityBar.fillAmount, Mathf.Abs(playerRB.velocity.y / 10f),
                                                 Time.deltaTime * 10f);
-            if (playerRB.velocity.y <= -6f)
+            if (playerRB.velocity.y <= -4f)
                 velocityBar.color = Color.Lerp(velocityBar.color, dangerColor, Time.deltaTime * 2f);
             else
                 velocityBar.color = Color.Lerp(velocityBar.color, panelColor, Time.deltaTime * 2f);

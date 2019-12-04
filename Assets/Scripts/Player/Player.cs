@@ -17,6 +17,10 @@ public class Player : MonoBehaviour {
 
     public event CupInstantiatedEventHandler CupInstantiated;
     
+    public delegate void PlayerJumpedEventHandler(object sender, CupEventArgs args);
+
+    public event PlayerJumpedEventHandler PlayerJumped;
+    
     private PlayerController playerController;
     [SerializeField] private GameObject cupPrefab;
     [SerializeField] private GameObject cupDestroyedPrefab;

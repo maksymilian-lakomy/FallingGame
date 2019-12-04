@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour {
 
     private float jumpCooldown = 0.1f;
     private float timeSinceJumped = 0.0f;
-    
+
+    private AudioSource audioSource;
     
     public delegate void PlayerOverSpeedEventHandler(object sender, EventArgs args);
     public event PlayerOverSpeedEventHandler PlayerOverSpeed;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour {
     
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -73,6 +75,7 @@ public class PlayerController : MonoBehaviour {
             x = 150f;
         if (direction == Direction.Left)
             x = -150f;
+        audioSource.Play();
         rigidbody.AddForce(new Vector3(x, 150, 0));
         jumpCounter += 1;
         return true;
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour {
         if (other.collider.CompareTag("Floor")) 
             jumpCounter = 0;
         
-        if (velocityBeforePhysicsUpdate.y > -7f)
+        if (velocityBeforePhysicsUpdate.y > -5f)
             return;
 
         if (Player.i.PlayerState != PlayerState.NotActive) {
