@@ -21,7 +21,8 @@ public class CupController : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision other) {
-        // throw new NotImplementedException();
+        if (other.collider.CompareTag("Floor"))
+            OnFloorCollision();
     }
 
     private void FixedUpdate() {
@@ -30,7 +31,7 @@ public class CupController : MonoBehaviour {
     }
 
     private void Movement() {
-        if (jumpCounter >= 2)
+        if (!CanJump())
             return;
         int horizontalInput = InputManager.GetHorizontalInput();
         if (horizontalInput == 0)
@@ -41,23 +42,33 @@ public class CupController : MonoBehaviour {
     }
 
     private bool CanJump() {
-        throw new NotImplementedException();
+        if (jumpCounter >= 2)
+            return false;
+        return true;
     }
 
     private void ResetJumpCounter() {
-        throw new NotImplementedException();
+        jumpCounter = 0;
     }
 
     private void OnFloorCollision() {
-        throw new NotImplementedException();
+        if (IsOverspeed())
+            Smash();
+        else {
+            ResetJumpCounter();
+        }
     }
 
     private bool IsOverspeed() {
-        throw new NotImplementedException();
+        if (velocityBeforePhysicsUpdate.y > -5f)
+            return false;
+        return true;
     }
 
     private void Smash() {
-        throw new NotImplementedException();
+        foreach (ISmashListenable listener in smashListeners) {
+            listener.OnSmash();
+        }
     }
     
     
