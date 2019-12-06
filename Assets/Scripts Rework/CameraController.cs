@@ -3,34 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour, ICupCreateListenable, ISmashListenable {
-    private Transform objectToFollow;
-    private Rigidbody objectToFollowRigidbody;
+public class CameraController : MonoBehaviour, ICupCreateListenable {
+    private Transform cup;
 
+    [SerializeField]
     private Vector3 offset;
+    [SerializeField]
     private float transitionDuration;
-    private float fovScaleDuration;
-
-    private Camera camera;
-    private Animator camerAnimator;
-
-    private void Awake() {
-        throw new NotImplementedException();
-    }
 
     private void FixedUpdate() {
-        throw new NotImplementedException();
+        Follow();
     }
     
     private void Follow() {
-        throw new NotImplementedException();
+        if (!cup)
+            return;
+        Vector3 destinationPosition = Vector3.Lerp(transform.position, cup.position + offset,
+                                                   Time.deltaTime * transitionDuration);
+        transform.position = destinationPosition;
     }
 
     public void OnCupCreate(GameObject cup) {
-        throw new System.NotImplementedException();
+        this.cup = cup.transform;
     }
 
-    public void OnSmash(GameObject sender) {
-        throw new System.NotImplementedException();
-    }
 }
