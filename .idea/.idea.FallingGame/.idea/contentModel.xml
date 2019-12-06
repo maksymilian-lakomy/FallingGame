@@ -28,6 +28,7 @@
         </e>
         <e p="Scripts Rework" t="Include">
           <e p="CupController.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
           <e p="Listeners" t="Include">
             <e p="ISmashListenable.cs" t="Include" />
           </e>
