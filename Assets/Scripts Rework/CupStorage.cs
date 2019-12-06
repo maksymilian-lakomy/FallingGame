@@ -7,4 +7,5 @@ using UnityEngine;
 public class CupStorage {
     public int Key;
     public GameObject Prefab;
+    public GameObject SmashedPrefab;
 }

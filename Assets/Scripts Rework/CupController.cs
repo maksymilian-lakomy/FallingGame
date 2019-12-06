@@ -67,7 +67,7 @@ public class CupController : MonoBehaviour {
 
     private void Smash() {
         foreach (ISmashListenable listener in smashListeners) {
-            listener.OnSmash();
+            listener.OnSmash(gameObject);
         }
     }
     

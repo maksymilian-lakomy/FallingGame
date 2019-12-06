@@ -12,9 +12,6 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
     private int currentCupIndex = 0;
     [SerializeField]
     private List<CupStorage> unlockedCups = new List<CupStorage>();
-
-    [SerializeField]
-    private GameObject defaultCup;
     public int SugarCubeAmount { get; private set; } = 0;
 
     private void Awake() {
@@ -38,6 +35,14 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
             if (cupStorage.Key == currentCupIndex)
                 return cupStorage.Prefab;
         }
-        return defaultCup;
+        return null;
+    }
+
+    public GameObject GetSmashedCup() {
+        foreach (CupStorage cupStorage in unlockedCups) {
+            if (cupStorage.Key == currentCupIndex)
+                return cupStorage.SmashedPrefab;
+        }
+        return null;
     }
 }
