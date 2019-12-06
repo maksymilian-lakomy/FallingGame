@@ -27,6 +27,7 @@
           <e p="UIManager.cs" t="Include" />
         </e>
         <e p="Scripts Rework" t="Include">
+          <e p="CameraController.cs" t="Include" />
           <e p="CollectableObject.cs" t="Include" />
           <e p="CupController.cs" t="Include" />
           <e p="CupStorage.cs" t="Include" />
@@ -35,6 +36,7 @@
           <e p="InputManager.cs" t="Include" />
           <e p="Listeners" t="Include">
             <e p="ICollectListenable.cs" t="Include" />
+            <e p="ICupCreateListenable.cs" t="Include" />
             <e p="ISmashListenable.cs" t="Include" />
           </e>
           <e p="SugarCubeObject.cs" t="Include" />
