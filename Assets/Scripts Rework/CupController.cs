@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class CupController : MonoBehaviour {
     private int jumpCounter = 0;
     [SerializeField]
@@ -14,6 +16,10 @@ public class CupController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision other) {
         throw new NotImplementedException();
+    }
+
+    private void FixedUpdate() {
+        
     }
 
     private void Movement() {
