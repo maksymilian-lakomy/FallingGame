@@ -6,24 +6,36 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
 public class CupController : MonoBehaviour {
+    [SerializeField]
     private int jumpCounter = 0;
     [SerializeField]
     private List<ISmashListenable> smashListeners = new List<ISmashListenable>();
 
+    private Rigidbody rigidbody;
+    private Vector3 velocityBeforePhysicsUpdate;
+    
     private void Awake() {
-        throw new NotImplementedException();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision other) {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     private void FixedUpdate() {
-        
+        Movement();
+        velocityBeforePhysicsUpdate = rigidbody.velocity;
     }
 
     private void Movement() {
-        throw new NotImplementedException();
+        if (jumpCounter >= 2)
+            return;
+        int horizontalInput = InputManager.GetHorizontalInput();
+        if (horizontalInput == 0)
+            return;
+        horizontalInput *= 150;
+        rigidbody.AddForce(horizontalInput, 150f, 0);
+        jumpCounter += 1;
     }
 
     private bool CanJump() {

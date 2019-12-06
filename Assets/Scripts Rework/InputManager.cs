@@ -4,25 +4,31 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public static class InputManager {
-    public static Vector2 GetHorizontalInput() {
-        Vector2 horizontalInput = GetKeyboardHorizontalInput();
-        if (horizontalInput == Vector2.zero)
+    public static int GetHorizontalInput() {
+        int horizontalInput = GetKeyboardHorizontalInput();
+        
+        Debug.Log(horizontalInput);
+        if (horizontalInput == 0)
             horizontalInput = GetTouchHorizontalInput();
         return horizontalInput;
     }
     
-    private static Vector2 GetKeyboardHorizontalInput() {    
-        return new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+    private static int GetKeyboardHorizontalInput() {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            return 1;
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            return -1;
+        return 0;
     }
     
-    private static Vector2 GetTouchHorizontalInput() {
+    private static int GetTouchHorizontalInput() {
         if (Input.touchCount <= 0 || Input.GetTouch(0).phase != TouchPhase.Began)
-            return Vector2.zero;
+            return 0;
         float screenCenterAxis = Screen.width / 2f;
         Touch touch = Input.GetTouch(0);
         if (touch.position.x >= screenCenterAxis)
-            return Vector2.right;
+            return 1;
         else
-            return Vector2.left;
+            return -1;
     }
 }
