@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -8,14 +9,15 @@ using UnityEngine;
 public class CupController : MonoBehaviour {
     [SerializeField]
     private int jumpCounter = 0;
-    [SerializeField]
-    private List<ISmashListenable> smashListeners = new List<ISmashListenable>();
+
+    private IEnumerable<ISmashListenable> smashListeners;
 
     private Rigidbody rigidbody;
     private Vector3 velocityBeforePhysicsUpdate;
     
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
+        smashListeners = FindObjectsOfType<MonoBehaviour>().OfType<ISmashListenable>();
     }
 
     private void OnCollisionEnter(Collision other) {
