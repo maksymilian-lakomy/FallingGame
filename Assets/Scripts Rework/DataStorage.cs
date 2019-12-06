@@ -8,15 +8,20 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
 
     public static DataStorage Instance;
 
-    public int CurrentCupIndex { get; private set; } = 0;
-    public List<CupStorage> UnlockedCups { get; private set; } = new List<CupStorage>();
+    [SerializeField]
+    private int currentCupIndex = 0;
+    [SerializeField]
+    private List<CupStorage> unlockedCups = new List<CupStorage>();
+
+    [SerializeField]
+    private GameObject defaultCup;
     public int SugarCubeAmount { get; private set; } = 0;
 
     private void Awake() {
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
+        if (Instance != null && Instance != this)
             Destroy(gameObject);
+        else
+            Instance = this;
         DontDestroyOnLoad(this);
     }
     
@@ -26,5 +31,13 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
     
     public void OnCollect(int amount) {
         ChangeSugarCubesAmount(amount);
+    }
+
+    public GameObject GetCup() {
+        foreach (CupStorage cupStorage in unlockedCups) {
+            if (cupStorage.Key == currentCupIndex)
+                return cupStorage.Prefab;
+        }
+        return defaultCup;
     }
 }

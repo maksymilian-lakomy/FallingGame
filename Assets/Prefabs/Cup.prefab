@@ -4764,10 +4764,10 @@ GameObject:
   - component: {fileID: 6373278027331245435}
   - component: {fileID: 4197574236682149265}
   - component: {fileID: 7519715927463746126}
-  - component: {fileID: 5715573907484687732}
   - component: {fileID: 5160651556134246032}
   - component: {fileID: 5159653716933202617}
   - component: {fileID: 517237218}
+  - component: {fileID: 1419797844}
   m_Layer: 0
   m_Name: Cup
   m_TagString: Untagged
@@ -4838,21 +4838,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5715573907484687732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923932792454956905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35e71076b9f870b41a7f03e6aec20f74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpParticle: {fileID: 1888114207704702033}
-  maxCapacity: 100
-  capacity: 100
 --- !u!54 &5160651556134246032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4979,6 +4964,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1419797844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923932792454956905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7dfe337ff6101c44888b31aba370465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3755147031536600902
 GameObject:
   m_ObjectHideFlags: 0
