@@ -10,6 +10,8 @@ public class ShelfMoveable : MonoBehaviour {
     private bool toEndPosition = true;
     [SerializeField] [Range(1f, 6f)] float moveSpeed = 1f;
 
+    private Dictionary<GameObject, Transform> parents = new Dictionary<GameObject, Transform>();
+
     private void Awake() {
         startPosition = transform.position;
     }
@@ -26,5 +28,15 @@ public class ShelfMoveable : MonoBehaviour {
             if (Mathf.Round(transform.position.x) == Mathf.Round(startPosition.x))
                 toEndPosition = true;
         }
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        parents.Add(other.gameObject, other.transform.parent);
+        other.transform.SetParent(gameObject.transform);
+    }
+
+    private void OnCollisionExit(Collision other) {
+        other.transform.SetParent(parents[other.gameObject]);
+        parents.Remove(other.gameObject);
     }
 }
