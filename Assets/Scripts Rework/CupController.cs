@@ -21,8 +21,11 @@ public class CupController : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision other) {
+        if (IsOverspeed())
+            Smash();
         if (other.collider.CompareTag("Floor"))
             OnFloorCollision();
+
     }
 
     private void FixedUpdate() {
@@ -52,11 +55,7 @@ public class CupController : MonoBehaviour {
     }
 
     private void OnFloorCollision() {
-        if (IsOverspeed())
-            Smash();
-        else {
-            ResetJumpCounter();
-        }
+        ResetJumpCounter();
     }
 
     private bool IsOverspeed() {

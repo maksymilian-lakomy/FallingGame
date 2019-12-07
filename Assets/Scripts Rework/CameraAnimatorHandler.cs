@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 
-public class CameraAnimatorHandler : MonoBehaviour, ICupCreateListenable {
+public class CameraAnimatorHandler : MonoBehaviour, ICupCreateListenable, ISmashListenable {
 
     private Rigidbody rigidbodyCup;
     private Animator animator;
@@ -43,5 +43,9 @@ public class CameraAnimatorHandler : MonoBehaviour, ICupCreateListenable {
 
     public void OnCupCreate(GameObject cup) {
         rigidbodyCup = cup.GetComponent<Rigidbody>();
+    }
+
+    public void OnSmash(GameObject sender) {
+        animator.SetBool("Destroy", true);
     }
 }

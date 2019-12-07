@@ -1,15 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public static class InputManager {
     public static int GetHorizontalInput() {
-        int horizontalInput = GetKeyboardHorizontalInput();
-        
-        Debug.Log(horizontalInput);
+        int horizontalInput = GetTouchHorizontalInput();
         if (horizontalInput == 0)
-            horizontalInput = GetTouchHorizontalInput();
+            horizontalInput = GetKeyboardHorizontalInput();
         return horizontalInput;
     }
     
