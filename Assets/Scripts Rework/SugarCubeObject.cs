@@ -8,6 +8,6 @@ public class SugarCubeObject : CollectableObject {
     private int changeAmount = 0;
     
     protected override void Collect() {
-        throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
     }
 }
