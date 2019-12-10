@@ -26,8 +26,12 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
         throw new NotImplementedException();
     }
     
-    public void OnCollect(int amount) {
-        ChangeSugarCubesAmount(amount);
+    public void OnCollect(CollectableType collectableType, int amount) {
+        switch (collectableType) {
+            case CollectableType.SugarCube:
+                ChangeSugarCubesAmount(amount);
+                break;
+        }
     }
 
     public GameObject GetCup() {
