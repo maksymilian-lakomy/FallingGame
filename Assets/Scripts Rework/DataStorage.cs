@@ -23,7 +23,7 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
     }
     
     public void ChangeSugarCubesAmount(int amount) {
-        throw new NotImplementedException();
+        SugarCubeAmount += amount;
     }
     
     public void OnCollect(CollectableType collectableType, int amount) {
