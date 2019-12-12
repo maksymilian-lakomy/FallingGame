@@ -27,8 +27,8 @@
         <e p="Scripts Rework" t="Include">
           <e p="CameraAnimatorHandler.cs" t="Include" />
           <e p="CameraController.cs" t="Include" />
+          <e p="CollectableData.cs" t="Include" />
           <e p="CollectableObject.cs" t="Include" />
-          <e p="CollectableType.cs" t="Include" />
           <e p="CupController.cs" t="Include" />
           <e p="CupStorage.cs" t="Include" />
           <e p="DataStorage.cs" t="Include" />

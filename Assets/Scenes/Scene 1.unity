@@ -1970,7 +1970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: -12}
-  transitionDuration: 5
+  transitionDuration: 3
 --- !u!4 &805222424
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public abstract class CollectableObject : MonoBehaviour {
 
     [SerializeField] protected IEnumerable<ICollectListenable> collectListeners;
 
-    [SerializeField] protected CollectableType collectableType;
+    [SerializeField] protected CollectableData collectableType;
     [SerializeField] protected int amount;
 
     private void Awake() {

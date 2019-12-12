@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
+using System.Linq;
 using UnityEngine;
 
 public class DataStorage : MonoBehaviour, ICollectListenable {
@@ -11,8 +12,9 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
     [SerializeField]
     private int currentCupIndex = 0;
     [SerializeField]
-    private List<CupStorage> unlockedCups = new List<CupStorage>();
-    public int SugarCubeAmount { get; private set; } = 0;
+    private List<CupStorage> unlockedCups = new List<CupStorage>(); 
+    
+    public Dictionary<CollectableData, int> CollectableStorage = new Dictionary<CollectableData, int>();
 
     private void Awake() {
         if (Instance != null && Instance != this)
@@ -22,16 +24,17 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
         DontDestroyOnLoad(this);
     }
     
-    public void ChangeSugarCubesAmount(int amount) {
-        throw new NotImplementedException();
+    public void OnCollect(CollectableData collectableData, int amount) {
+        if (!CollectableStorage.ContainsKey(collectableData))
+            CollectableStorage.Add(collectableData, amount);
+        else
+            CollectableStorage[collectableData] += amount;
     }
-    
-    public void OnCollect(CollectableType collectableType, int amount) {
-        switch (collectableType) {
-            case CollectableType.SugarCube:
-                ChangeSugarCubesAmount(amount);
-                break;
-        }
+
+    public int GetFromStorage(CollectableData collectableData) {
+        if (CollectableStorage.ContainsKey(collectableData))
+            return CollectableStorage[collectableData];
+        return 0;
     }
 
     public GameObject GetCup() {

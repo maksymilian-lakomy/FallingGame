@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface ICollectListenable {
-    void OnCollect(CollectableType collectableType, int amount);
+    void OnCollect(CollectableData collectableData, int amount);
 }
