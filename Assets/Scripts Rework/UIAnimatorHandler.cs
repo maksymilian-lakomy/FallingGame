@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIAnimatorHandler : MonoBehaviour, IGameStateListenable {
     private Animator animator;
     
+    
     private void Awake() {
         animator = GetComponent<Animator>();
     }

@@ -14,6 +14,8 @@ public class CupController : MonoBehaviour {
 
     private Rigidbody rigidbody;
     private Vector3 velocityBeforePhysicsUpdate;
+
+    public static float OverspeedThreshold = -5f;
     
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
@@ -59,7 +61,7 @@ public class CupController : MonoBehaviour {
     }
 
     private bool IsOverspeed() {
-        if (velocityBeforePhysicsUpdate.y > -5f)
+        if (velocityBeforePhysicsUpdate.y > OverspeedThreshold)
             return false;
         return true;
     }
