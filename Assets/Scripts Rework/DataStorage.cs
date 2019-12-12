@@ -36,13 +36,7 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
             listener.OnChange(collectableData, CollectableStorage[collectableData]);
         }
     }
-
-    public int GetFromStorage(CollectableData collectableData) {
-        if (CollectableStorage.ContainsKey(collectableData))
-            return CollectableStorage[collectableData];
-        return 0;
-    }
-
+    
     public GameObject GetCup() {
         foreach (CupStorage cupStorage in unlockedCups) {
             if (cupStorage.Key == currentCupIndex)

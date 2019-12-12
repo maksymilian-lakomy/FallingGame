@@ -43,6 +43,9 @@
             <e p="ISmashListenable.cs" t="Include" />
           </e>
           <e p="ShelfMoveable.cs" t="Include" />
+          <e p="Shelves" t="Include">
+            <e p="ShelfTrap.cs" t="Include" />
+          </e>
           <e p="SugarCubeObject.cs" t="Include" />
           <e p="UIAnimatorHandler.cs" t="Include" />
           <e p="UIController.cs" t="Include" />
