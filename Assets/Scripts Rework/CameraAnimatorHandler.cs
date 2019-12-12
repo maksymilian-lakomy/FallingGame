@@ -10,7 +10,7 @@ public class CameraAnimatorHandler : MonoBehaviour, ICupCreateListenable, ISmash
     private Animator animator;
 
     [SerializeField]
-    private float transitionDuration = 5f;
+    private float transitionSpeed = 5f;
     [SerializeField]
     private float velocityScale = 5f;
 
@@ -29,7 +29,7 @@ public class CameraAnimatorHandler : MonoBehaviour, ICupCreateListenable, ISmash
         }
         float velocity = Mathf.Abs(rigidbodyCup.velocity.y / velocityScale);
         float currentVelocity = animator.GetFloat("Zoom");
-        animator.SetFloat("Zoom", Mathf.Lerp( currentVelocity, velocity, Time.deltaTime*transitionDuration));
+        animator.SetFloat("Zoom", Mathf.Lerp( currentVelocity, velocity, Time.deltaTime*transitionSpeed));
     }
     
     
