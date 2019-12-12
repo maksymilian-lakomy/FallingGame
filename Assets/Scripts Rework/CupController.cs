@@ -29,9 +29,12 @@ public class CupController : MonoBehaviour {
             OnFloorCollision();
 
     }
+    
+    private void Update() {
+        Movement(); 
+    }
 
     private void FixedUpdate() {
-        Movement();
         velocityBeforePhysicsUpdate = rigidbody.velocity;
     }
 
