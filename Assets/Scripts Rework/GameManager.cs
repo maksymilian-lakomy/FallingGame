@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour, ISmashListenable {
 
     private GameState gameState;
     
+    
     public GameState GameState {
         get => gameState;
         private set {

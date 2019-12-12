@@ -2,11 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
-public class UIController : MonoBehaviour, IGameStateListenable, ICupCreateListenable {
+public class UIController : MonoBehaviour, IGameStateListenable, ICupCreateListenable, IInventoryChange {
     
     private GameState gameState;
 
@@ -19,6 +20,15 @@ public class UIController : MonoBehaviour, IGameStateListenable, ICupCreateListe
     [SerializeField] private Color speedBarFillmentNormalColor;
     [SerializeField] private Color speedBarFillmentDangerColor;
 
+    [SerializeField] 
+    private TextMeshProUGUI sugarCubesAmount;
+    [SerializeField]
+    private CollectableData sugarCubesCollectableData;
+
+    private void Awake() {
+        DataStorage.InventoryChangeListeners.Add(this);
+    }
+    
     private void Update() {
         InputObserver();
         VelocityBar();
@@ -52,5 +62,10 @@ public class UIController : MonoBehaviour, IGameStateListenable, ICupCreateListe
     
     public void OnGameStateChange(GameState gameState) {
         this.gameState = gameState;
+    }
+
+    public void OnChange(CollectableData collectableData, int newAmount) {
+        if (collectableData == sugarCubesCollectableData)
+            sugarCubesAmount.text = newAmount.ToString();
     }
 }

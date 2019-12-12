@@ -16,6 +16,9 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
     
     public Dictionary<CollectableData, int> CollectableStorage = new Dictionary<CollectableData, int>();
 
+    public static List<IInventoryChange> InventoryChangeListeners = new List<IInventoryChange>();
+    
+
     private void Awake() {
         if (Instance != null && Instance != this)
             Destroy(gameObject);
@@ -29,6 +32,9 @@ public class DataStorage : MonoBehaviour, ICollectListenable {
             CollectableStorage.Add(collectableData, amount);
         else
             CollectableStorage[collectableData] += amount;
+        foreach (IInventoryChange listener in InventoryChangeListeners) {
+            listener.OnChange(collectableData, CollectableStorage[collectableData]);
+        }
     }
 
     public int GetFromStorage(CollectableData collectableData) {

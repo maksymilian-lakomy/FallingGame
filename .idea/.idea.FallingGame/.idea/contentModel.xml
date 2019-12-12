@@ -39,6 +39,7 @@
             <e p="ICollectListenable.cs" t="Include" />
             <e p="ICupCreateListenable.cs" t="Include" />
             <e p="IGameStateListenable.cs" t="Include" />
+            <e p="IInventoryChange.cs" t="Include" />
             <e p="ISmashListenable.cs" t="Include" />
           </e>
           <e p="ShelfMoveable.cs" t="Include" />
