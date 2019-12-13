@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5811605476844251734}
   - component: {fileID: 259644210298214063}
   - component: {fileID: 4399851333682494697}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shelf Right
   m_TagString: Floor
   m_Icon: {fileID: 0}
