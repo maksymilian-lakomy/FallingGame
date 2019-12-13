@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour, ISmashListenable {
     }
     
     public void RestartGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        String activeSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(activeSceneName, LoadSceneMode.Single);
     }
 
     public void OnSmash(GameObject sender) {

@@ -16,6 +16,9 @@ public class CupController : MonoBehaviour {
     private Vector3 velocityBeforePhysicsUpdate;
 
     public static float OverspeedThreshold = -5f;
+
+    [SerializeField]
+    private Transform safePosition;
     
     private void Awake() {
         rigidbody = GetComponent<Rigidbody>();
@@ -26,8 +29,7 @@ public class CupController : MonoBehaviour {
         if (IsOverspeed())
             Smash();
         if (other.collider.CompareTag("Floor"))
-            OnFloorCollision();
-
+            OnFloorCollision(other.gameObject);
     }
     
     private void Update() {
@@ -59,8 +61,9 @@ public class CupController : MonoBehaviour {
         jumpCounter = 0;
     }
 
-    private void OnFloorCollision() {
+    private void OnFloorCollision(GameObject other) {
         ResetJumpCounter();
+        SaveSafePosition(other);
     }
 
     private bool IsOverspeed() {
@@ -74,6 +77,18 @@ public class CupController : MonoBehaviour {
             listener.OnSmash(gameObject);
         }
     }
+
+    private void SaveSafePosition(GameObject other) {
+        if (other.layer != LayerMask.NameToLayer("SafeToSave"))
+            return;
+        if (!safePosition) {
+            safePosition = new GameObject().transform;
+            safePosition.name = "Safe position save";
+        }
+        safePosition.position = transform.position;
+        safePosition.SetParent(other.transform);
+    }
+
     
     
 }
