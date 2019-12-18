@@ -8,7 +8,8 @@ public class MenuTouchManager : MonoBehaviour {
             return;
         Touch touch = Input.GetTouch(0);
         if (touch.phase == TouchPhase.Began) {
-            MenuManager.i.StartGameButton();
+            // MenuManager.i.StartGameButton();
         }
     }
 }
+    
